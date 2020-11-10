@@ -1,0 +1,21 @@
+public class Solution {
+    public int lPalin(ListNode A) {
+       ListNode fast = A;
+       ListNode slow = A;
+       ListNode prev = null;
+       while(fast!=null&&fast.next!=null){
+           fast = fast.next.next;
+           ListNode temp = slow;
+           slow = slow.next;
+           temp.next = prev;
+           prev = temp;
+       }
+       if(fast!=null) slow = slow.next;
+       while(prev!=null&&slow!=null){
+           if(prev.val!=slow.val)  return 0;
+           prev = prev.next;
+           slow = slow .next;
+       }
+        return 1;
+    }
+}
