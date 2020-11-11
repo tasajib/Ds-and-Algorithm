@@ -1,0 +1,20 @@
+public class Solution {
+    public int isValid(String str) {
+        
+        Stack<Character>stack = new Stack<>();
+        for(char ch: str.toCharArray() ){
+            if(ch==')'||ch=='}'||ch==']'){
+                boolean check = false;
+                if(stack.empty()) return 0;
+                if(ch==')'&&stack.peek()=='(')check = true;
+                if(ch=='}'&&stack.peek()=='{')check = true;
+                if(ch==']'&&stack.peek()=='[') check = true;
+                if(check) stack.pop();
+                else return 0;
+                }
+            
+            else stack.push(ch);
+        }
+        return stack.empty()?1:0;
+    }
+}
