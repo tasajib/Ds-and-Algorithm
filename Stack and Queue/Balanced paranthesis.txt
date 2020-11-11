@@ -1,0 +1,13 @@
+public class Solution {
+    public int solve(String str) {
+        Stack<Character> stack = new Stack();
+        for(char ch: str.toCharArray() ){
+            if(ch==')'){
+                if(stack.empty()) return 0;
+                stack.pop();
+            }
+            else stack.push(ch);
+        }
+        return stack.empty()?1:0;
+    }
+}
