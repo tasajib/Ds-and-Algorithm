@@ -1,0 +1,17 @@
+public class Solution {
+    public int evalRPN(ArrayList<String> expression) {
+        Stack<Integer> stack = new Stack();
+        for(String token:expression){
+            if("+-*/".contains(token) ){
+                int second = stack.pop();
+                int first = stack.pop();
+                if(token.equals("+")) stack.push(first+second);
+                else if(token.equals("-")) stack.push(first-second);
+                else if(token.equals("*")) stack.push(first*second);
+                else stack.push(first/second);
+            }
+            else stack.push(Integer.parseInt(token) );
+        }
+        return stack.pop();
+    }
+}
