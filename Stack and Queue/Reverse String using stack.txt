@@ -1,0 +1,11 @@
+public class Solution {
+    public String reverseString(String str) {
+        Stack<Character> stack = new Stack<>();
+        for(char ch : str.toCharArray()) stack.push(ch);
+        StringBuilder result = new StringBuilder("");
+        while(!stack.empty()){
+            result.append(stack.pop());
+        }
+        return result.toString();
+    }
+}
