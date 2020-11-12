@@ -1,8 +1,7 @@
 public class Solution {
     public String simplifyPath(String absolute) {
         Stack<String> stack =new Stack<>();
-        String[] values = absolute.split("/");
-        for(String value:values){
+        for(String value:absolute.split("/")){
             if(value.equals("..")&&!stack.empty() ){
                 stack.pop();
             }
