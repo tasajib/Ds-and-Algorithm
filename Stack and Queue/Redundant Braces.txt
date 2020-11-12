@@ -1,0 +1,16 @@
+public class Solution {
+    public int braces(String expression) {
+        Stack<Character> stack = new Stack<>();
+        for(char ch:expression.toCharArray() ){
+            if(ch=='+'||ch=='-'||ch=='*'||ch=='/'||ch=='(') stack.push(ch);
+            else if(ch==')'){
+                if(stack.peek()=='(' ) return 1;
+                else {
+                    while(stack.peek()!='(' ) stack.pop();
+                    stack.pop();
+                }
+            }
+        }
+        return 0;
+    }
+}
