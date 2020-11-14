@@ -1,0 +1,15 @@
+public class Solution {
+    public String solve(String str) {
+        StringBuilder ans = new StringBuilder("");
+        Queue<Character> queue = new LinkedList<>();
+        HashMap<Character,Integer> map = new HashMap();
+        for(int i=0;i<str.length();i++){
+             queue.add(str.charAt(i));
+            map.put(str.charAt(i),map.getOrDefault(str.charAt(i),0 )+1 );
+            while(!queue.isEmpty() && map.get(queue.peek())>1 ) queue.poll();
+            if(queue.isEmpty()) ans.append('#');
+            else ans.append(queue.peek());
+        }
+        return ans.toString();
+    }
+}
