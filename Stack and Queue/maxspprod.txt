@@ -1,0 +1,27 @@
+public class Solution {
+    public int maxSpecialProduct(int[] numbers) {
+        int size = numbers.length;
+        int[] left = new int[size];
+        int[] right = new int[size];
+        Stack<Integer> stack = new Stack();
+        for(int i=0;i<size;i++){
+            while(!stack.isEmpty()&&numbers[stack.peek()]<=numbers[i]) stack.pop();
+            if(stack.isEmpty() ) left[i]=0;
+            else left[i]= stack.peek();
+            stack.push(i);
+        }
+        stack.clear();
+        for(int i=size-1;i>=0;i--){
+             while(!stack.isEmpty()&&numbers[stack.peek()]<=numbers[i]) stack.pop();
+            if(stack.isEmpty() ) right[i]=0;
+            else right[i]= stack.peek();
+            stack.push(i);
+        }
+        long mul =0,res=0;
+        for(int i=0;i<size;i++){
+            res =(long)left[i]*(long)right[i];
+            mul = Math.max(res,mul );
+        }
+        return (int) (mul%1000000007);
+    }
+}
