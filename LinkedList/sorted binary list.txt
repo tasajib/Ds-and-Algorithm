@@ -1,0 +1,21 @@
+public class Solution {
+    public ListNode solve(ListNode head) {
+        if(head==null||head.next==null) return head;
+        int zeros =0;
+        ListNode current = head;
+        while(current!=null){
+            if(current.val==0) zeros++;
+            current = current.next;
+        }
+        current = head;
+        while(current!=null){
+            if(zeros>0){
+                current.val = 0;
+                zeros--;
+            }
+            else current.val = 1;
+            current = current.next;
+        }
+        return head;
+    }
+}
