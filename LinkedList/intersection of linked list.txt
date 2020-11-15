@@ -1,0 +1,51 @@
+/*public class Solution {
+    private int length(ListNode list){
+        int count=0;
+        while(list!=null){
+            list = list.next;
+            count++;
+        }
+        return count;
+    }
+    public ListNode getIntersectionNode(ListNode first, ListNode second) {
+       if(first==null||second==null) return null;
+       int firstLength = length(first);
+       int secondLength = length(second);
+       int distance = Math.abs(firstLength-secondLength);
+       if(firstLength<=secondLength){
+           for(int i=0;i<distance;i++) second = second.next;
+           for(int i=0;i<firstLength;i++){
+               if(first==second) return first;
+               first = first.next;
+               second = second.next;
+           }
+       }
+       else{
+           for(int i=0;i<distance;i++) first = first.next;
+           for(int i=0;i<secondLength;i++){
+               if(second==first) return second;
+               first = first.next;
+               second = second.next;
+           }
+       }
+       return null;
+    }
+}
+*/
+public class Solution {
+    
+    public ListNode getIntersectionNode(ListNode first, ListNode second) {
+      if(first==null || second ==null) return null;
+      HashMap<ListNode,Integer> map = new HashMap();
+      ListNode temp = first;
+      while(temp!=null){
+          map.put(temp,temp.val);
+          temp=temp.next;
+      }
+      while(second!=null){
+          if(map.containsKey(second)) return second;
+          second = second.next;
+      }
+      return null;
+    }
+}
