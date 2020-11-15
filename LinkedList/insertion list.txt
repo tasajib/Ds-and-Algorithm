@@ -1,0 +1,27 @@
+public class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if(head==null||head.next==null) return head;
+        ListNode nextNode = head.next;
+        head.next =null;
+        while(nextNode!=null){
+            ListNode aheadNext = nextNode.next;
+            if(nextNode.val<=head.val){
+                nextNode.next = head;
+                head = nextNode;
+            }
+            else{
+                ListNode prev = head;
+                ListNode current = head.next;
+                while(current!=null&& current.val<nextNode.val ){
+                    prev = current;
+                    current = current.next;
+                }
+                prev.next = nextNode;
+                nextNode.next = current;
+            }
+            
+            nextNode = aheadNext;
+        }
+        return head;
+    }
+}
