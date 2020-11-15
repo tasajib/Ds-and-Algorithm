@@ -1,0 +1,23 @@
+public class Solution {
+    public ListNode partition(ListNode head, int k) {
+        if(head==null||head.next==null)  return head;
+        ListNode lessPortion = new ListNode(-1);
+        ListNode greaterPortion = new ListNode(-1);
+        ListNode tempLessPortion = lessPortion;
+        ListNode tempGreaterPortion = greaterPortion;
+        while(head!=null){
+            if(head.val<k){
+                tempLessPortion.next =head;
+                tempLessPortion = tempLessPortion.next;
+            }
+            else{
+                tempGreaterPortion.next = head;
+                tempGreaterPortion = tempGreaterPortion.next;
+            }
+            head = head.next;
+        }
+        tempGreaterPortion.next =null;
+        tempLessPortion.next = greaterPortion.next;
+        return lessPortion.next;
+    }
+}
