@@ -1,0 +1,27 @@
+public class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        if(head==null||head.next==null) return head; 
+        ListNode dummy = new ListNode(-1);
+        ListNode temp = dummy;
+        ListNode current = head,forward = current.next;
+        while(forward!=null){
+            boolean flag =false;
+            while(forward!=null&&forward.val==current.val){
+                flag = true;
+                forward = forward.next;
+            }
+            if(!flag){
+                temp.next = current;
+                temp = temp.next;
+                current = current.next;
+                if(forward!=null) forward = forward.next;
+            }
+            else{
+                temp.next = forward;
+                current = forward;
+                if(forward!=null) forward = forward.next;
+            }
+        }
+        return dummy.next;
+    }
+}
