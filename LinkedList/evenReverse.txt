@@ -1,0 +1,51 @@
+public class Solution {
+    
+    public ListNode solve(ListNode head) {
+        if(head==null||head.next==null) return head;
+        ListNode oddHead = new ListNode(-1);
+        ListNode evenHead = new ListNode(-1);
+        ListNode oddTemp = oddHead;
+        ListNode evenTemp = evenHead;
+        ListNode current = head;
+        
+        int flag =1;
+        while(current!=null){
+            if(flag%2==1){
+               oddTemp.next = current;
+                oddTemp = oddTemp.next;
+            }
+            else{
+                
+                 evenTemp.next = current;
+                evenTemp = evenTemp.next;
+            }
+            current = current.next;
+            flag++;
+        }
+        oddTemp.next = null;
+        evenTemp.next = null;
+        ListNode reversed = reverse(evenHead.next);
+      merge(oddHead.next,reversed);
+      return head;
+    }
+    private void merge(ListNode first,ListNode second){
+        while(second!=null){
+            ListNode firstNext = first.next;
+            ListNode secondNext = second.next;
+            first.next = second;
+            second.next = firstNext;
+            first = firstNext;
+            second = secondNext;
+        }
+    }
+    private ListNode reverse (ListNode head){
+        ListNode prev = null,current = head;
+        while(current!=null){
+            ListNode forward = current.next;
+            current.next = prev;
+            prev = current;
+            current = forward;
+        }
+        return prev;
+    }
+}
