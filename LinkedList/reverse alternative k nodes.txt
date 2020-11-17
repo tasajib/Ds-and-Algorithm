@@ -1,0 +1,38 @@
+public class Solution {
+    public ListNode solve(ListNode head, int k) {
+        if(head==null||head.next==null) return head;
+        ListNode current=head,prev=null,currentHead= current;
+        for(int i=0;i<k;i++){
+            ListNode forward = current.next;
+            current.next = prev;
+            prev = current;
+            current = forward;
+        }
+        head = prev;
+        int flag=2;
+        while(current!=null){
+            ListNode newHead = current;
+            prev =null;
+            if(flag%2==0){
+                for(int i=0;i<k;i++){
+                    prev = current;
+                    current = current.next;
+                }
+                currentHead.next = newHead;
+                currentHead = prev;
+            }
+            else{
+                for(int i=0;i<k;i++){
+                    ListNode forward = current.next;
+                    current.next = prev;
+                    prev = current;
+                    current = forward;
+                }
+                currentHead.next = prev;
+                currentHead = newHead;
+            }
+            flag++;
+        }
+        return head;
+    }
+}
