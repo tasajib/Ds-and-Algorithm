@@ -1,0 +1,38 @@
+public class Solution {
+    public ListNode reorderList(ListNode head) {
+        if(head==null||head.next==null) return head;
+        ListNode slow=head,temp=null,fast=head;
+        while(fast!=null&&fast.next!=null){
+            temp =slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        temp.next = null;
+        ListNode reversed = reverse(slow);
+        slow.next = null;
+        merge(head,reversed);
+        return head;
+    }
+    private ListNode reverse(ListNode head){
+        ListNode current =head,prev =null;
+        while(current!=null){
+            ListNode forward = current.next;
+            current.next = prev;
+            prev = current;
+            current = forward;
+        }
+        return prev;
+    }
+    private void merge(ListNode first,ListNode second){
+        while(first!=null){
+            ListNode firstNext = first.next;
+            ListNode secondNext = second.next;
+            first.next = second;
+            if(firstNext==null) break;
+            second.next = firstNext;
+            first = firstNext;
+            second = secondNext;
+        }
+    }
+    
+}
