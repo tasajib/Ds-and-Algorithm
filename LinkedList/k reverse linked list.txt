@@ -1,0 +1,28 @@
+public class Solution {
+   
+    public ListNode reverseList(ListNode head, int k) {
+       if(head==null||head.next==null) return head;
+       ListNode prev = null,current = head;
+       ListNode currentHead = current;
+       for(int i=0;i<k;i++){
+           ListNode forward = current.next;
+           current.next = prev;
+           prev = current;
+           current = forward;
+       }
+       head = prev;
+       while(current!=null){
+           ListNode newHead = current;
+           prev =null;
+           for(int i=0;i<k;i++){
+               ListNode forward = current.next;
+               current.next = prev;
+               prev = current;
+               current = forward;
+           }
+           currentHead.next =prev;
+           currentHead = newHead;
+       }
+       return head;
+    }
+}
