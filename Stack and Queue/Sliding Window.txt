@@ -2,23 +2,15 @@ public class Solution {
     // DO NOT MODIFY THE LIST. IT IS READ ONLY
     public ArrayList<Integer> slidingMaximum(final List<Integer> values, int k) {
         Deque<Integer> dq = new LinkedList<>();
-        ArrayList<Integer> result= new ArrayList<>();
-        if(k>values.size() ) return result;
-        for(int i=0;i<k;i++){
-            while(!dq.isEmpty()&&values.get(dq.peekLast())<=values.get(i) ){
+        ArrayList<Integer> result = new ArrayList<>();
+        for(int i=0;i<values.size();++i ){
+            while(!dq.isEmpty() && values.get(i)>=values.get(dq.peekLast())) {
                 dq.removeLast();
             }
             dq.addLast(i);
+            if(dq.peekFirst()==i-k) dq.removeFirst();
+            if(i>=k-1) result.add(values.get(dq.peekFirst()) );
         }
-        for(int i=k;i<values.size();i++ ){
-            result.add(values.get(dq.peekFirst()));
-            while(!dq.isEmpty()&&dq.peekFirst()<=i-k )dq.removeFirst();
-            while(!dq.isEmpty()&&values.get(dq.peekLast())<=values.get(i) ){
-                dq.removeLast();
-            }
-            dq.addLast(i);
-        }
-        result.add(values.get(dq.peekFirst()));
         return result;
     }
 }
