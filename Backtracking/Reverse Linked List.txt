@@ -1,0 +1,19 @@
+public class Solution {
+   private  ListNode result=null;
+    public ListNode reverseList(ListNode head) {
+        if(head==null||head.next==null) return head;
+        reverse(head);
+        return result;
+        
+    }
+    private void reverse(ListNode node){
+        if(node.next==null){
+            result = node;
+            return;
+        }
+        reverse(node.next);
+        ListNode forward = node.next;
+        forward.next = node;
+        node.next=null;
+    }
+}
