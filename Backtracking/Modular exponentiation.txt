@@ -1,0 +1,20 @@
+public class Solution {
+    public int Mod(int x, int n, int M) {
+        if(x==0) return 0;
+        int ans = (int)power(x,n,M);
+        return ans<0?ans+M:ans;
+    }
+    private long power (int x,int n,int M){
+        if(n==0) return 1;
+        if(n%2==1){
+            long y = power(x,(n-1)/2,M)%M;
+            long z = (y*y)%M;
+            return ((x%M)*z)%M;
+        }
+        else{
+            long y = power(x,n/2,M)%M;
+            long z = (y*y)%M;
+            return z;
+        }
+    }
+}
