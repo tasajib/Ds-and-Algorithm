@@ -1,0 +1,18 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> combine(int n, int k) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        generateCombination(1,ans,n,k,new ArrayList<Integer>());
+        return ans;
+    }
+    private void generateCombination(int index,ArrayList<ArrayList<Integer>> ans,int n,int k,ArrayList<Integer> current){
+        if(current.size()==k){
+            ans.add(new ArrayList<>(current));
+            return;
+        }
+        for(int i=index;i<=n;i++){
+            current.add(i);
+            generateCombination(i+1,ans,n,k,current);
+            current.remove(current.size()-1 );
+        }
+    }
+}
