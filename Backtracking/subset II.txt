@@ -1,0 +1,17 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> subsetsWithDup(ArrayList<Integer> list) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        Collections.sort(list);
+        generateSubset(list,0,ans,new ArrayList<Integer>());
+        return ans;
+    }
+    private void generateSubset(ArrayList<Integer> list,int index,ArrayList<ArrayList<Integer>> ans ,ArrayList<Integer> current){
+        ans.add(new ArrayList<>(current));
+        for(int i=index;i<list.size();i++ ){
+            if(i>index&& list.get(i)==list.get(i-1) ) continue;
+            current.add(list.get(i) );
+            generateSubset(list,i+1,ans,current);
+            current.remove(current.size()-1 );
+        }
+    }
+}
