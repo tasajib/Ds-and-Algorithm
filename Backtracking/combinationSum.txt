@@ -1,0 +1,21 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> combinationSum(ArrayList<Integer> candidate, int target) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        Collections.sort(candidate);
+        generateCombination(candidate,0,target,ans,new ArrayList<Integer>());
+        return ans;
+    }
+    private void generateCombination(ArrayList<Integer> candidate,int index,int target,ArrayList<ArrayList<Integer>> ans ,ArrayList<Integer> current){
+        if(target<0) return;
+        else if(target==0){
+            ans.add(new ArrayList<>(current));
+            return;
+        }
+        for(int i=index;i<candidate.size();i++ ){
+            if(i==index|| candidate.get(i)!=candidate.get(i-1) ){
+            current.add(candidate.get(i) );
+            generateCombination(candidate,i,target-candidate.get(i),ans,current);
+            current.remove(current.size()-1 );}
+        }
+    }
+}
