@@ -1,0 +1,22 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> list) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList();
+        boolean[] used = new boolean[list.size()];
+        Collections.sort(list);
+        generatePermutation(list,used,ans,new ArrayList());
+        return ans;
+    }
+    private void generatePermutation(ArrayList<Integer> list,boolean[] used,ArrayList<ArrayList<Integer>> ans,ArrayList<Integer> current){
+        if(current.size()==list.size()){
+            ans.add(new ArrayList(current));
+        }
+        for(int i=0;i<list.size();i++ ){
+            if(used[i]) continue;
+            current.add(list.get(i) );
+            used[i]= true;
+            generatePermutation(list,used,ans,current);
+            current.remove(current.size()-1 );
+            used[i]=false;
+        }
+    }
+}
