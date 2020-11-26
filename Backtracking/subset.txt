@@ -1,0 +1,16 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> subsets(ArrayList<Integer> arr) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        Collections.sort(arr);
+        dfs(arr,0,ans,new ArrayList<Integer>());
+        return ans;
+    }
+    private void dfs(ArrayList<Integer> arr,int index,ArrayList<ArrayList<Integer>> ans,ArrayList<Integer> current){
+        ans.add(new ArrayList<>(current));
+        for(int i=index;i<arr.size();i++ ){
+            current.add(arr.get(i) );
+            dfs(arr,i+1,ans,current);
+            current.remove(current.size()-1 );
+        }
+    }
+}
