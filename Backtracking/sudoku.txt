@@ -1,0 +1,67 @@
+class Solution {
+    
+    public void solveSudoku(ArrayList<ArrayList<Character>> grid) {
+        char[][] board = new char[9][9];
+        char[][] ans = new char[9][9];
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                ans[i][j]='.';
+                board[i][j]= grid.get(i).get(j);
+            }
+        }
+        generateSudoku(board,0,0,ans);
+         for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                grid.get(i).set(j,ans[i][j]);
+            }
+        }
+    }
+    private void setResult(char[][] board,char[][] ans){
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+                ans[i][j]=board[i][j];
+            }
+        }
+    }
+      private  boolean isValid(char[][] board,int row,int col,char val){
+      int startRow = row/3*3;
+      int startCol = col/3*3;
+      for(int i=0;i<9;i++){
+          if(board[row][i]==val) return false;
+          if(board[i][col]==val) return false;
+      }
+      for(int i=0;i<3;i++){
+          for(int j=0;j<3;j++){
+              if(board[startRow+i][startCol+j]==val) return false;
+          }
+      }
+      return true;
+  }
+    public  void generateSudoku(char[][] board, int row, int col,char[][] ans) {
+            if(row==9) {
+                setResult(board,ans);
+                return;
+            }
+            int newRow = 0;
+            int newCol =0;
+            if(col==8){
+                newRow = row+1;
+                newCol=0;
+            }
+            else{
+                newRow = row;
+                newCol = col+1;
+            }
+            if(board[row][col]!='.') generateSudoku(board,newRow,newCol,ans);
+            else{
+                for(char val='1';val<='9';val++){
+                    if(isValid(board,row,col,val) ){
+                        board[row][col]= val;
+                        generateSudoku(board,newRow,newCol,ans);
+                        board[row][col]='.';
+                    }
+                }
+            }
+  }
+    
+}
