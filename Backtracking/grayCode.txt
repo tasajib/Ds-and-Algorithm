@@ -10,8 +10,9 @@ public class Solution {
     }
     
     private ArrayList<String> generateGraySequence(int n){
-         ArrayList<String> temp = new ArrayList();
+         
         if(n==1){
+		    ArrayList<String> temp = new ArrayList();
             temp.add("0");
             temp.add("1");
             return temp;
