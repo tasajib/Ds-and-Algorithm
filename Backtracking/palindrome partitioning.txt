@@ -1,0 +1,29 @@
+public class Solution {
+    public ArrayList<ArrayList<String>> partition(String str) {
+        ArrayList<ArrayList<String>> ans = new ArrayList();
+        generatePalindrome(ans,str,new ArrayList());
+        return ans;
+    }
+    private void generatePalindrome(ArrayList<ArrayList<String>> ans,String str,ArrayList<String> current){
+        if(str.length()==0 ){
+            ans.add(new ArrayList(current) );
+            return;
+        }
+        for(int i=0;i<str.length();i++ ){
+            String leftPartition = str.substring(0,i+1);
+            if(isPalindrome(leftPartition)){
+                current.add(leftPartition);
+                generatePalindrome(ans,str.substring(i+1),current );
+                current.remove(current.size()-1 );
+            }
+        }
+    }
+    private boolean isPalindrome(String str){
+        int start =0,end = str.length()-1;
+        while(start<end){
+            if(str.charAt(start)!=str.charAt(end) ) return false;
+            start++;end--;
+        }
+        return true;
+    }
+}
