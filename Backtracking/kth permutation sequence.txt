@@ -1,0 +1,27 @@
+public class Solution {
+    public String getPermutation(int n, int k) {
+       ArrayList<Integer> fact = new ArrayList();
+       ArrayList<Integer> digits = new ArrayList();
+       StringBuilder ans = new StringBuilder("");
+       fact.add(1);
+       fact.add(1);
+       for(int i=2;i<=n;i++){
+           if(i>=12)fact.add(Integer.MAX_VALUE);
+           else fact.add(i*fact.get(i-1));
+           
+       }
+       for(int i=1;i<=n;i++)digits.add(i);
+       while(n>1){
+           int currentIndex = k/fact.get(n-1);
+           if(k%fact.get(n-1)==0 ) currentIndex--;
+           ans.append(""+digits.get(currentIndex) );
+           digits.remove(currentIndex);
+           k = k - currentIndex*fact.get(n-1);
+           n = digits.size();
+       }
+       ans.append(digits.get(0));
+       return ans.toString();
+       
+    }
+   
+}
