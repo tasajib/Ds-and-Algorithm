@@ -1,0 +1,17 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> twoSum(final List<Integer> arr, int target) {
+        ArrayList<Integer> ans = new ArrayList();
+        HashMap<Integer,Integer> map = new HashMap();
+        for(int i=0;i<arr.size();i++ ){
+            int difference = target - arr.get(i);
+            if(map.containsKey(difference)){
+                ans.add(map.get(difference)+1 );
+                ans.add(i+1);
+                return ans;
+            }
+            if(!map.containsKey(arr.get(i)))  map.put(arr.get(i),i);
+        }
+        return ans;
+    }
+}
