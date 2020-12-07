@@ -1,0 +1,14 @@
+public class Solution {
+    public int solve(String str) {
+        int ans =0;
+        HashMap<Character,Integer> map = new HashMap();
+        for(char ch:str.toCharArray() ){
+            if(map.containsKey(ch)) map.put(ch,map.getOrDefault(ch,0)+1);
+            else map.put(ch,1);
+        }
+       for(Map.Entry<Character,Integer> entry:map.entrySet() ){
+         if(entry.getValue()%2==1) ans++;  
+       }
+        return ans>1?0:1;
+    }
+}
