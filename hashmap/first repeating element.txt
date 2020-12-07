@@ -1,0 +1,13 @@
+public class Solution {
+    public int solve(ArrayList<Integer> list) {
+       HashMap<Integer,Integer> map = new HashMap();
+       int ans =Integer.MAX_VALUE;
+       for(int i=0;i<list.size();i++ ){
+           if(map.containsKey(list.get(i))){
+               ans = Math.min(ans,map.get(list.get(i)) );
+           }
+           else map.put(list.get(i),i);
+       }
+       return ans==Integer.MAX_VALUE?-1:list.get(ans);
+    }
+}
