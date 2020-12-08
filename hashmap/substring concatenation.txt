@@ -1,0 +1,26 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public ArrayList<Integer> findSubstring(String str, final List<String> arr) {
+        ArrayList<Integer> ans = new ArrayList();
+        if(str.length()==0 || arr.size()==0 ) return ans;
+        HashMap<String,Integer> map = new HashMap();
+        for(String val:arr) map.put(val,map.getOrDefault(val,0)+1);
+        int totalLength = arr.size()*arr.get(0).length();
+        int singleLength = arr.get(0).length();
+        int i=0;
+        while(i<=str.length() -totalLength ){
+            String sub = str.substring(i,i+totalLength);
+            HashMap<String,Integer> map2 = new HashMap();
+            int j=0,n=0;
+            while(j<arr.size() ){
+                String val = sub.substring(n,n+singleLength);
+                map2.put(val,map2.getOrDefault(val,0)+1);
+                n=n+singleLength;
+                j++;
+            }
+            if(map.equals(map2)) ans.add(i);
+            i++;
+        }
+        return ans;
+    }
+}
