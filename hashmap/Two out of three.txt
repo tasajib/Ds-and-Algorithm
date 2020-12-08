@@ -1,0 +1,32 @@
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> one, ArrayList<Integer> two, ArrayList<Integer> three) {
+        HashMap<Integer,Integer> map1 = new HashMap();
+        HashMap<Integer,Integer> map2 = new HashMap();
+        HashMap<Integer,Integer> map3 = new HashMap();
+        HashSet<Integer> set = new HashSet();
+        ArrayList<Integer> ans = new ArrayList();
+        for(int val: one) {
+             map1.put(val,1);
+        }
+        for(int val:two){
+             map2.put(val,1);
+             if(map1.containsKey(val) ){
+                 if(!set.contains(val) ){
+                     ans.add(val);
+                     set.add(val);
+                 }
+             }
+        }
+        for(int val:three){
+             map3.put(val,1);
+             if(map1.containsKey(val) ||map2.containsKey(val) ){
+                 if(!set.contains(val) ){
+                     ans.add(val);
+                     set.add(val);
+                 }
+             }
+        }
+        Collections.sort(ans);
+        return ans;
+    }
+}
