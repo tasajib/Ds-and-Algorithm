@@ -1,0 +1,25 @@
+public class Solution {
+    public ArrayList<ArrayList<Integer>> fourSum(ArrayList<Integer> nums, int target) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList();
+        HashMap<String,Integer> map = new HashMap();
+        Collections.sort(nums);
+        for(int i=0;i<nums.size()-3;i++){
+            for(int j=i+1;j<nums.size()-2;j++){
+                int left = j+1,right=nums.size()-1;
+                while(left<right){
+                    int fourSum = nums.get(i)+nums.get(j)+nums.get(left)+nums.get(right);
+                    if(fourSum==target){
+                        if(!map.containsKey(nums.get(i)+""+nums.get(j)+""+nums.get(left)+""+nums.get(right))){
+                        ans.add(new ArrayList(Arrays.asList(nums.get(i),nums.get(j),nums.get(left),nums.get(right))) );
+                        map.put(nums.get(i)+""+nums.get(j)+""+nums.get(left)+""+nums.get(right),1);
+                        }
+                        left++;right--;
+                    }
+                    else if(fourSum>target) right--;
+                    else left++;
+                }
+            }
+        }
+        return ans;
+    }
+}
