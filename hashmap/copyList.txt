@@ -1,0 +1,26 @@
+public class Solution {
+    public RandomListNode copyRandomList(RandomListNode head) {
+       HashMap<RandomListNode,Integer> map1 = new HashMap();
+       HashMap<Integer,RandomListNode> map2 = new HashMap();
+       RandomListNode ans = new RandomListNode(0);
+       RandomListNode p1,p2;
+       p1=head;p2=ans;
+        int pos=1;
+       while(p1!=null){
+           map1.put(p1,pos);
+           p2.next = new RandomListNode(p1.label);
+           p1 =p1.next;
+           p2 = p2.next;
+           map2.put(pos,p2);
+           pos++;
+       }
+     pos=1;p1=head;p2=ans.next;
+     while(p1!=null){
+         p2.random =map2.get(map1.get(p1.random)) ;
+         p1 = p1.next;
+         p2 = p2.next;
+     }
+       
+       return ans.next;
+    }
+}
