@@ -1,0 +1,17 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int isValidSudoku(final List<String> board) {
+        HashSet<String> seen = new HashSet();
+        for(int row=0;row<9;row++){
+            for(int col=0;col<9;col++){
+                if(board.get(row).charAt(col)!='.'){
+                    if(!seen.add("row"+row+board.get(row).charAt(col))) return 0;
+                    if(!seen.add("col"+col+board.get(row).charAt(col))) return 0;
+                    if(!seen.add("box"+(row/3)*3+col/3+board.get(row).charAt(col))) return 0;
+                }
+            }
+        }
+        
+        return 1;
+    }
+}
