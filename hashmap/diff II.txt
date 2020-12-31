@@ -1,0 +1,14 @@
+public class Solution {
+    // DO NOT MODIFY THE LIST. IT IS READ ONLY
+    public int diffPossible(final List<Integer> numbers, int k) {
+        HashSet<Integer> set = new HashSet();
+        for(int number:numbers){
+            if(!set.isEmpty()){
+                if(set.contains(number+k)||set.contains(number-k) ) return 1;
+                set.add(number);
+            }
+            else set.add(number);
+        }
+        return 0;
+    }
+}
