@@ -1,0 +1,11 @@
+public class Solution {
+    public int solve(ArrayList<Integer> numbers, int b) {
+        HashSet<Integer> set = new HashSet();
+        int ans =0;
+        for(int number:numbers){
+            if(set.contains(number ^ b) ) ans++;
+            set.add(number);
+        }
+        return ans;
+    }
+}
